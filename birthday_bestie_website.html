@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#241746">
+<title>Happy Birthday, Jeby! 💗</title>
+<style>
+:root{--pink:#ff639d;--rose:#ffb1ca;--cream:#fff5e9;--ink:#402445;--purple:#7d5bea}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;background:#241746;color:var(--cream);overflow-x:hidden}
+button{font:inherit;cursor:pointer;border:0;-webkit-tap-highlight-color:transparent}
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:10}
+.sky{position:relative;min-height:100svh;overflow:hidden;display:grid;place-items:center;padding:32px 16px 56px;background:radial-gradient(ellipse at 50% 72%,#fa7b8f 0%,#7d426f 29%,#382858 56%,#171a3e 100%)}
+.sky:before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(16,17,44,.8)),radial-gradient(ellipse at 50% 100%,#ffb06d66,transparent 50%)}
+.stars{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1.5px),radial-gradient(#ffd5e4 1px,transparent 1.5px);background-size:73px 83px,113px 127px;background-position:0 0,31px 40px;opacity:.7}
+.stringlights{position:absolute;top:0;left:-5%;width:110%;height:120px;border-top:2px solid #ffdba5;border-radius:0 0 50% 50%;transform:rotate(-3deg)}
+.stringlights:after{content:"";position:absolute;top:18px;left:0;width:100%;height:80px;background:radial-gradient(circle,#ffe7a4 0 3px,transparent 5px);background-size:48px 44px;filter:drop-shadow(0 0 7px #ffd879)}
+.hero{position:relative;z-index:1;width:min(100%,760px);text-align:center;padding:24px 8px 10px}
+.pill{display:inline-block;border:1px solid #ffb9d2aa;border-radius:100px;padding:9px 15px;background:#ffffff10;backdrop-filter:blur(8px);font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:#ffe1ec}
+.cake{font-size:clamp(65px,15vw,100px);margin:17px 0 0;filter:drop-shadow(0 10px 22px #ff80ad44);animation:bob 2.7s ease-in-out infinite}
+h1{font-size:clamp(3.2rem,12vw,7.4rem);line-height:.91;letter-spacing:-.07em;margin:14px 0 18px;font-family:Georgia,serif;font-weight:700;text-shadow:0 5px 30px #ff80ae55}
+h1 span{display:block;color:#ffd5a0;font-style:italic}
+.name{font-size:clamp(1.6rem,6vw,2.6rem);font-weight:800;color:#ffd6e5;margin:22px 0 10px}
+.lead{max-width:540px;margin:0 auto;color:#fff0f5;font-size:clamp(1rem,3.5vw,1.2rem);line-height:1.8}
+.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:27px 0 0}
+.btn{padding:14px 21px;border-radius:999px;font-weight:800;min-height:49px;transition:transform .18s,filter .18s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.primary{color:#54213e;background:linear-gradient(110deg,#ffd69c,#ff91bd);box-shadow:0 8px 26px #ff639d44}
+.ghost{color:#fff;background:#ffffff14;border:1px solid #ffffff66}
+.scrollhint{font-size:.82rem;color:#ffe4efaa;margin-top:36px}
+.section{padding:58px 16px;background:var(--cream);color:var(--ink)}
+.paper{width:min(100%,690px);margin:auto;position:relative;padding:clamp(25px,6vw,52px) clamp(20px,6vw,55px);background:#fffaf1;border:1px solid #f2d9d2;border-radius:5px;box-shadow:0 14px 45px #42213b20;transform:rotate(-.5deg)}
+.paper:before{content:"";position:absolute;top:-12px;left:42%;width:110px;height:26px;background:#ff8eae99;transform:rotate(-4deg)}
+.eyebrow{color:#d54d85;letter-spacing:.14em;text-transform:uppercase;font-size:.75rem;font-weight:900;text-align:center}
+h2{font-family:Georgia,serif;font-size:clamp(2rem,7vw,3.3rem);text-align:center;margin:10px 0 20px;color:#6e3158}
+.note{font-size:clamp(1rem,3.7vw,1.12rem);line-height:1.95;text-align:center}
+.signature{text-align:center;color:#cf4c81;font-family:Georgia,serif;font-style:italic;font-size:1.35rem;margin-top:22px}
+.wishes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:min(100%,690px);margin:26px auto 0}
+.wish{background:#fff;border:1px solid #f6dce7;border-radius:18px;padding:18px 12px;text-align:center;box-shadow:0 7px 20px #5d31520a}
+.wish .emoji{font-size:1.8rem}.wish strong{display:block;margin-top:7px;color:#793e67}
+.gift-area{text-align:center;padding:50px 16px 62px;background:linear-gradient(160deg,#fff0f6,#f1e9ff);color:#542746}
+.gift{font-size:88px;display:block;animation:bob 2s infinite;filter:drop-shadow(0 9px 10px #d45b8a25)}
+#surprise{display:none;width:min(100%,580px);margin:22px auto 0;padding:23px;border:2px dashed #ef91b5;border-radius:22px;background:#ffffffb8;line-height:1.9;animation:pop .45s ease both}
+#surprise.show{display:block}
+.footer{text-align:center;padding:25px 12px;background:#241746;color:#ffdce9;font-size:.85rem}
+.heart{display:inline-block;color:#ff639d;animation:beat 1.3s infinite}
+.float-heart{position:absolute;bottom:-50px;opacity:0;animation:rise 8s linear infinite;pointer-events:none}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-10px) rotate(2deg)}}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.23)}30%{transform:scale(1)}}
+@keyframes rise{0%{transform:translateY(0) rotate(0);opacity:0}15%{opacity:.8}100%{transform:translateY(-110vh) rotate(35deg);opacity:0}}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+@media(min-width:650px){.wishes{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:390px){.actions{flex-direction:column;padding:0 12px}.btn{width:100%}.sky{padding-top:48px}.paper{padding:30px 19px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<header class="sky" id="top">
+  <div class="stars"></div><div class="stringlights"></div>
+  <span class="float-heart" style="left:9%;animation-delay:-1s">💗</span>
+  <span class="float-heart" style="left:83%;animation-delay:-4s">✨</span>
+  <span class="float-heart" style="left:25%;animation-delay:-6s">💕</span>
+  <main class="hero">
+    <div class="pill">✨ A little page made with love ✨</div>
+    <div class="cake" aria-hidden="true">🎂</div>
+    <h1>Happy <span>Birthday!</span></h1>
+    <div class="name" id="friendName">Jeby 💗</div>
+    <p class="lead" id="intro">To the girl who makes ordinary days funnier, brighter, and a little more chaotic. Today, the whole universe gets to celebrate YOU. 🌙✨</p>
+    <div class="actions">
+      <button class="btn primary" id="surpriseBtn">🎁 Open your surprise</button>
+      <button class="btn ghost" id="confettiBtn">🎊 Make it rain confetti</button>
+    </div>
+    <div class="scrollhint">↓ there's a little letter waiting for you ↓</div>
+  </main>
+</header>
+<section class="section">
+  <article class="paper">
+    <div class="eyebrow">A letter from your bestie</div>
+    <h2>For my Bestie ♡</h2>
+    <p class="note" id="letter">Happy birthday to my beautiful best friend! 🥹💗 I hope you know how precious you are to me. Thank you for every laugh, every silly conversation, every little moment, and for being someone I can always be myself with. You deserve a life full of happiness that lasts, dreams that come true, and people who choose you every single day. Keep being your wonderful, kind, hilarious self. No matter how much life changes, I’ll always be cheering for you. I hope this year gives you a thousand reasons to smile—and at least a few stories we’ll laugh about forever. always your bestie! 🫂💕</p>
+    <div class="signature">Always a call away, <span class="heart">♥</span></div>
+  </article>
+  <div class="wishes">
+    <div class="wish"><div class="emoji">🌷</div><strong>J</strong><span>always be Joyful</span></div>
+    <div class="wish"><div class="emoji">✨</div><strong>E</strong><span>always be Energetic</span></div>
+    <div class="wish"><div class="emoji">🫂</div><strong>B</strong><span>always be Blessed</span></div>
+    <div class="wish"><div class="emoji">🫶</div><strong>Y</strong><span>always be You</span></div>
+  </div>
+</section>
+<section class="gift-area">
+  <span class="gift" aria-hidden="true">🎀🎁</span>
+  <h2 style="margin:12px 0;color:#79385f">One last little surprise...</h2>
+  <p style="line-height:1.7;max-width:480px;margin:0 auto">Because one birthday wish could never fit all the love I have for you.</p>
+  <button class="btn primary" id="letterBtn" style="margin-top:20px">💌 Tap for a secret message</button>
+  <div id="surprise" aria-live="polite">
+    <strong>JEBY!! 🥹💖</strong><br>
+    reminder: you are loved, you are important, and you deserve all the good things life has to offer. I’m so lucky I get to call you my best friend. enjoy YOUR life like the queen you are. 👑🎂<br><br>
+    <strong>Happy birthday, bestie. 🍨❤️🫂</strong>
+  </div>
+</section>
+<footer class="footer">Made with lots of love, just for you <span class="heart">♥</span><br>Best friends are a kind of magic ✨</footer>
+<script>
+// PERSONALIZE: edit these values to customize the page.
+const FRIEND_NAME = "Jeby"; // e.g. "Ananya"
+const INTRO_MESSAGE = "To the girl who makes ordinary days funnier, brighter, and a little more chaotic. Today, its your day celebrate it to the most. 🌙✨";
+// Optional: customize the letter text directly in the HTML above.
+
+if (FRIEND_NAME !== "Jeby") {
+  document.getElementById("friendName").textContent = "To " + FRIEND_NAME + " 💗";
+  document.title = "Happy Birthday, " + FRIEND_NAME + "! 💗";
+}
+document.getElementById("intro").textContent = INTRO_MESSAGE;
+
+// Confetti animation
+const canvas = document.getElementById("confetti"), ctx = canvas.getContext("2d");
+let w=0,h=0,pieces=[],raf=null;
+const colors=["#ff639d","#ffd69c","#9d8bff","#70dfd0","#fff1f6","#ff8a69"];
+function resize(){const d=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;canvas.width=w*d;canvas.height=h*d;canvas.style.width=w+"px";canvas.style.height=h+"px";ctx.setTransform(d,0,0,d,0,0)}
+function burst(n=170){for(let i=0;i<n;i++)pieces.push({x:Math.random()*w,y:-20-Math.random()*h*.3,vx:(Math.random()-.5)*4.8,vy:2+Math.random()*4.5,size:4+Math.random()*6,rot:Math.random()*6,spin:(Math.random()-.5)*.15,c:colors[Math.floor(Math.random()*colors.length)],life:240+Math.random()*90});if(!raf)draw()}
+function draw(){ctx.clearRect(0,0,w,h);pieces=pieces.filter(p=>p.life-->0&&p.y<h+30);for(const p of pieces){p.x+=p.vx;p.y+=p.vy;p.vy+=.022;p.rot+=p.spin;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.c;ctx.fillRect(-p.size/2,-p.size/3,p.size,p.size*.65);ctx.restore()}if(pieces.length)raf=requestAnimationFrame(draw);else{cancelAnimationFrame(raf);raf=null;ctx.clearRect(0,0,w,h)}}
+addEventListener("resize",resize,{passive:true});resize();addEventListener("load",()=>burst(230));
+document.getElementById("confettiBtn").addEventListener("click",()=>burst(240));
+function openSurprise(){const box=document.getElementById("surprise");box.classList.add("show");burst(220);box.scrollIntoView({behavior:"smooth",block:"center"})}
+document.getElementById("surpriseBtn").addEventListener("click",openSurprise);
+document.getElementById("letterBtn").addEventListener("click",()=>{const box=document.getElementById("surprise");box.classList.toggle("show");if(box.classList.contains("show"))burst(220)});
+</script>
+</body>
+</html>
